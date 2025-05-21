@@ -43,12 +43,6 @@ public class Status {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getStatus() {
-        Response.StatusType status = Response.Status.SERVICE_UNAVAILABLE;
-
-        if (isRunning) {
-            status = Response.Status.OK;
-        }
-
-        return Response.status(status).build();
+        return Response.status(isRunning ? Response.Status.OK : Response.Status.SERVICE_UNAVAILABLE).build();
     }
 }
